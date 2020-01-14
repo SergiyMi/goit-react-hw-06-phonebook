@@ -5,6 +5,7 @@ import * as styles from './App.module.css';
 import PhonebookForm from './component/phonebookForm';
 import FilterContacts from './component/filterContacts';
 import Contacts from './component/contacts';
+import MESSAGE from './constants';
 
 const App = () => {
   const [contacts, setContacts] = useState([]);
@@ -26,6 +27,11 @@ const App = () => {
       number,
     };
 
+    if (name.length < 1 || number.length < 1) {
+      alert(MESSAGE.ERROR_VALUE);
+      return;
+    }
+
     if (contacts.length < 1) {
       setContacts([...contacts, contact]);
       return;
@@ -34,7 +40,7 @@ const App = () => {
     const nameArray = contacts.map(cont => cont.name);
 
     if (nameArray.includes(name)) {
-      alert(`${name} is already in contacts`);
+      alert(`${name} ${MESSAGE.REPEAT_VALUE}`);
       return undefined;
     }
     setContacts(prevContacts => [...contacts, contact]);

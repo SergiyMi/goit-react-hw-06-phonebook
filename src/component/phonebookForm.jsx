@@ -16,7 +16,7 @@ const PhonebookForm = ({ handleSubmit }) => {
   const [number, setNumber] = useState('');
 
   const handleNumberChange = e => {
-    setNumber(e.target.value);
+    setNumber(e.target.value.replace(/\D/, ''));
   };
 
   return (
